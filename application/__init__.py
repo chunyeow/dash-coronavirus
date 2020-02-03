@@ -20,7 +20,7 @@ def create_app():
         app.register_blueprint(routes.main_bp)
 
         # Import Dash application
-        from application.dash_application.dash_example import Add_Dash
+        from application.dash_application.dash_coronavirus import Add_Dash
         app = Add_Dash(app)
 
         # Compile assets
