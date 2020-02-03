@@ -3,6 +3,7 @@ import requests
 import json
 requests.packages.urllib3.disable_warnings()
 from .apiconf import api_confirmedcase, api_deathscase, api_recovercase, api_countrycase
+from datetime import datetime
 
 def get_confirmed_case():
     try:
@@ -72,8 +73,8 @@ def scheduled_task(task_id):
       recover = data['features'][0]['attributes']['value']
       print("==================================")
       f = open('./data/global.csv','w')
-      f.write("Confirmed,Deaths,Recover\n")
-      f.write("%d,%d,%d\n" % (confirm, death, recover))
+      f.write("Date/Time,Confirmed,Deaths,Recover\n")
+      f.write("%s,%d,%d,%d\n" % (datetime.now(), confirm, death, recover))
       f.close()
       res = get_country_case()
       data = res.json()

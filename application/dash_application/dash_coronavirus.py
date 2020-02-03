@@ -6,6 +6,11 @@ import dash_html_components as html
 import pandas as pd
 from .layout import html_layout
 
+def serve_layout():
+    return html.Div(
+        children=get_datasets(),
+        id='dash-container'
+      )
 
 def Add_Dash(server):
     """Create a Dash app."""
@@ -23,10 +28,11 @@ def Add_Dash(server):
     dash_app.index_string = html_layout
 
     # Create Dash Layout comprised of Data Tables
-    dash_app.layout = html.Div(
-        children=get_datasets(),
-        id='dash-container'
-      )
+    #dash_app.layout = html.Div(
+    #    children=get_datasets(),
+    #    id='dash-container'
+    #  )
+    dash_app.layout = serve_layout
 
     return dash_app.server
 
